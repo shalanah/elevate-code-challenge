@@ -35,6 +35,7 @@ export const UserItem = ({
         }
       >
         <div className="flex justify-between items-center w-full">
+          {/* TODO: Put into a comp - user image */}
           <div
             className={classNames(
               "flex w-[65px] h-[65px] -ml-[8px] relative flex-shrink-0 bg-[--bg-main] rounded-full border-white border-[5px]",

@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 export const useGetUsers = () => {
   const res = useQuery({
     queryKey: ["users"],
+    refetchOnWindowFocus: false, // no refetch on window focus
+    refetchOnMount: false, // no refetch on component mount
     queryFn: async () => {
       // TODO: We could also get the ids and then cache each of the users separately
       const usersIdsUrl = new URL(`${import.meta.env.VITE_API_URL}/users`);
