@@ -58,6 +58,7 @@ I hope you enjoy this project as much as I did creating it!
 - More fun hover animation of user item
 - Add filtering + sorting
 - Add grid + list view
+- Add storybook + tests
 
 ## Running
 
