@@ -23,7 +23,7 @@ const Inner = ({
   );
 };
 
-export const HomePage = () => {
+export const Home = () => {
   const { isPending, error, data } = useGetUsers();
   return (
     <main className="flex flex-col w-full h-full">

@@ -7,7 +7,7 @@ import { Skills } from "../components/Skills";
 import { UserStreakSessions } from "../components/UserStreakSessions";
 import { Error } from "../components/Error";
 
-export const UserPage = () => {
+export const UserDetails = () => {
   const { id } = useParams();
   const { isPending, error, data } = useGetUsers();
   const user =

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage } from "./pages/HomePage";
-import { UserPage } from "./pages/UserPage";
+import { Home } from "./pages/Home";
+import { UserDetails } from "./pages/UserDetails";
 import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
@@ -10,10 +10,10 @@ function App() {
         baseColor="var(--bg-main)"
         highlightColor="var(--bg-tertiary)"
       >
-        <HomePage />
+        <Home />
         <Routes>
           <Route path="/" element={null} />
-          <Route path="/:id" element={<UserPage />} />
+          <Route path="/:id" element={<UserDetails />} />
         </Routes>
       </SkeletonTheme>
     </Router>
