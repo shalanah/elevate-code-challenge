@@ -1,9 +1,10 @@
-import classNames from "classnames";
 import { Modal } from "../components/Modal";
 import { useGetUsers } from "../hooks/useGetUsers";
 import { useNavigate, useParams } from "react-router-dom";
-import { FiUser } from "react-icons/fi";
-import Skeleton from "react-loading-skeleton";
+import { UserImage } from "../components/UserImage";
+import "../index.css";
+import { Skills } from "../components/Skills";
+import { UserStreakSessions } from "../components/UserStreakSessions";
 
 export const UserPage = () => {
   const { id } = useParams();
@@ -19,57 +20,27 @@ export const UserPage = () => {
         navigation("/");
       }}
     >
-      <div className="px-8 py-6">
+      <div className="p-6">
         <header className="flex gap-4 items-center">
-          <div
-            className={classNames(
-              "flex w-[100px] h-[100px] -ml-[8px] relative flex-shrink-0 bg-[--bg-main] rounded-full border-white border-[5px]",
-              { "shadow-md": !isPending }
-            )}
-          >
-            {user?.image ? (
-              <img
-                src={`data:image/png;base64,${user.image}`}
-                alt="profile image"
-                className="w-full h-full rounded-full"
-              />
-            ) : isPending ? null : (
-              <FiUser className="m-auto" size={30} />
-            )}
-          </div>
+          <UserImage user={user} loading={isPending} />
           <div className="flex flex-col w-full">
             <h1 className="text-lg font-bold mt-3">
               {user ? [user.first_name, user.last_name].join(" ") : ""}
             </h1>
-            <div className="flex w-full gap-1 text-left leading-[1.1] mt-0">
-              <div className="flex-1">
-                <h3 className="text-[--text-muted] text-sm">
-                  {isPending ? <Skeleton width={40} /> : "Streak"}
-                </h3>
-                <p className="tabular-nums">
-                  {isPending ? (
-                    <Skeleton width={20} />
-                  ) : (
-                    user.stats.current_streak_in_days
-                  )}
-                </p>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-[--text-muted] text-sm">
-                  {isPending ? <Skeleton width={40} /> : "Sessions"}
-                </h3>
-                <p className="tabular-nums">
-                  {isPending ? (
-                    <Skeleton width={20} />
-                  ) : (
-                    user.stats.total_sessions_played
-                  )}
-                </p>
-              </div>
-            </div>
+            <UserStreakSessions
+              user={user}
+              loading={isPending}
+              className="mt-1"
+            />
           </div>
         </header>
-        <div className="bg-[--bg-main] h-[100px] w-full"></div>
+        <div className="w-full mt-8 rounded-lg px-4 py-8 border-t">
+          <div className="w-full">
+            {user && !isPending && user?.stats && (
+              <Skills stats={user?.stats} />
+            )}
+          </div>
+        </div>
       </div>
     </Modal>
   );

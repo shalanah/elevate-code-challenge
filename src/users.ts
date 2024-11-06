@@ -7,7 +7,7 @@ export type UserStats = {
     [k in (typeof subjects)[number]]: {
       current: number;
       max: number;
-      level: number;
+      level: string;
     };
   };
 };

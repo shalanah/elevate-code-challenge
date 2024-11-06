@@ -1,7 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { ReactNode } from "react";
-// import "./Modal.css"; // I'd rather right this myself but we are short on time
 
 export const Modal = ({
   children,
@@ -23,11 +22,10 @@ export const Modal = ({
         }
       }}
     >
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black opacity-20" />
-
+      <Dialog.Portal container={document.getElementById("root")}>
+        <Dialog.Overlay className="fixed inset-0 bg-black opacity-20 z-40" />
         <Dialog.Content
-          className="bg-white rounded-xl shadow-md fixed top-[50%] left-[50%] max-w-[450px] max-h-[85vh] w-full"
+          className="bg-white rounded-xl shadow-md fixed top-[50%] left-[50%] max-w-[450px] max-h-[85vh] w-full z-40"
           style={{ transform: "translate(-50%, -50%)" }}
         >
           <Dialog.Title className="sr-only">{title}</Dialog.Title>
@@ -35,13 +33,6 @@ export const Modal = ({
             {description}
           </Dialog.Description>
           {children}
-          <div
-            style={{
-              display: "flex",
-              marginTop: 25,
-              justifyContent: "flex-end",
-            }}
-          ></div>
           <Dialog.Close asChild>
             <button
               aria-label="Close"

@@ -1,10 +1,10 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { User, user_empty } from "../users";
 import { SkillsThumbnail } from "./SkillsThumbnail";
-import { FiUser } from "react-icons/fi";
 import "react-loading-skeleton/dist/skeleton.css";
-import classNames from "classnames";
 import { Link } from "react-router-dom";
+import { UserImage } from "./UserImage";
+import { UserStreakSessions } from "./UserStreakSessions";
 
 export const UserItem = ({
   user = user_empty,
@@ -35,23 +35,13 @@ export const UserItem = ({
         }
       >
         <div className="flex justify-between items-center w-full">
-          {/* TODO: Put into a comp - user image */}
-          <div
-            className={classNames(
-              "flex w-[65px] h-[65px] -ml-[8px] relative flex-shrink-0 bg-[--bg-main] rounded-full border-white border-[5px]",
-              { "shadow-md": !loading }
-            )}
-          >
-            {user.image ? (
-              <img
-                src={`data:image/png;base64,${user.image}`}
-                alt="profile image"
-                className="w-full h-full rounded-full"
-              />
-            ) : loading ? null : (
-              <FiUser className="m-auto" size={30} />
-            )}
-          </div>
+          <UserImage
+            user={user}
+            loading={loading}
+            className="-ml-[8px]"
+            width={65}
+            height={65}
+          />
           <div className="bg-[--bg-tertiary] py-2 rounded-lg items-center justify-center w-[50%] flex">
             {loading ? (
               <div style={{ height: 50 }} />
@@ -73,33 +63,7 @@ export const UserItem = ({
             <Skeleton width={100} count={2} />
           </h2>
         )}
-        {/* Should we treat this more like a table? -> is tabular data... look into alternatives */}
-        <div className="flex w-full gap-1 text-left leading-[1.1] mt-5">
-          <div className="flex-1">
-            <h3 className="text-[--text-muted] text-sm">
-              {loading ? <Skeleton width={40} /> : "Streak"}
-            </h3>
-            <p className="tabular-nums">
-              {loading ? (
-                <Skeleton width={20} />
-              ) : (
-                user.stats.current_streak_in_days
-              )}
-            </p>
-          </div>
-          <div className="flex-1">
-            <h3 className="text-[--text-muted] text-sm">
-              {loading ? <Skeleton width={40} /> : "Sessions"}
-            </h3>
-            <p className="tabular-nums">
-              {loading ? (
-                <Skeleton width={20} />
-              ) : (
-                user.stats.total_sessions_played
-              )}
-            </p>
-          </div>
-        </div>
+        <UserStreakSessions user={user} loading={loading} className="mt-5" />
       </Link>
     </SkeletonTheme>
   );
