@@ -51,11 +51,12 @@ export const HomePage = () => {
           {error && <Error />}
           {data &&
             data
-              // TODO: Filtering + Sorting
-              // .filter(() => true)
-              // .sort((a, b) => {(a?.id ?? "") - (b?.id ?? "")})
-              .map((user: User | null) => {
-                if (!user) return null;
+              .filter((user) => user !== null) // future filtering here
+              .sort((a, b) => {
+                // Just so everything is in a predictable order
+                return Number(a?.id) - Number(b?.id);
+              })
+              .map((user: User) => {
                 return <UserItem user={user} key={user.id} />;
               })}
         </Inner>
