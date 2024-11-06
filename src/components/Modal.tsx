@@ -25,7 +25,7 @@ export const Modal = ({
       <Dialog.Portal container={document.getElementById("root")}>
         <Dialog.Overlay className="fixed inset-0 bg-black opacity-20 z-40" />
         <Dialog.Content
-          className="bg-white rounded-xl shadow-md fixed top-[50%] left-[50%] max-w-[450px] max-h-[85vh] w-full z-40"
+          className="bg-white rounded-xl shadow-md fixed top-[50%] left-[50%] max-w-[450px] max-h-[85vh] w-full z-40 overflow-auto"
           style={{ transform: "translate(-50%, -50%)" }}
         >
           <Dialog.Title className="sr-only">{title}</Dialog.Title>

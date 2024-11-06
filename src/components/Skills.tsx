@@ -2,6 +2,18 @@ import { subjects, UserStats } from "../users";
 import styled, { keyframes } from "styled-components";
 
 // Styled components is an old love of mine - using it just cuz I know it.
+const grow = keyframes`
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+`;
+
+const Bar = styled.span`
+  animation: ${grow} 0.5s ease-out both;
+`;
 
 // Once again - could use charting lib, canvas, or hand-coded SVG
 const Skill = ({
@@ -10,12 +22,14 @@ const Skill = ({
   level,
   subject,
   percent,
+  index,
 }: {
   name: string;
   value: number;
   level: string;
   subject: string;
   percent: number;
+  index: number;
 }) => {
   return (
     <div className="flex flex-col gap-[5px] items-start w-full">
@@ -29,11 +43,12 @@ const Skill = ({
       <span
         className={`rounded-[4px] h-[10px] w-full bg-[--bg-main] relative overflow-hidden`}
       >
-        <span
+        <Bar
           className="bg-[--bg-main] h-[100%] w-full absolute"
           style={{
+            animationDelay: `${index * 0.05}s`,
+            clipPath: `xywh(0 0 ${percent}% 100%)`,
             backgroundColor: `var(--bg-${subject})`,
-            width: percent + "%",
           }}
         />
       </span>
@@ -54,8 +69,9 @@ export const Skills = ({ stats }: { stats: UserStats }) => {
   const average = value / total;
   return (
     <span className="flex flex-col gap-[25px] items-start w-full">
-      {subjects.map((subject) => (
+      {subjects.map((subject, i) => (
         <Skill
+          index={i}
           subject={subject}
           key={subject}
           name={subject}
@@ -69,6 +85,7 @@ export const Skills = ({ stats }: { stats: UserStats }) => {
       {/* <span className="bg-[--bg-memory] h-[80%] flex-1 rounded-t-full" /> */}
       <span className="bg-black w-[100%] h-[1px] rounded-r-full opacity-15 mt-2" />
       <Skill
+        index={subjects.length}
         name="Average"
         value={value}
         level=""
