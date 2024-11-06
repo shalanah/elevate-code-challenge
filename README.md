@@ -59,6 +59,7 @@ I hope you enjoy this project as much as I did creating it!
 - Separate react-query into multiple calls - so it could be more performant when coming to a single user page
 - Add retry logic on error on calls that fail
 - More fun hover animation of user item
+- Double check everything on mobile phone
 - Add filtering + sorting
 - Add grid + list view
 - Add storybook + tests
