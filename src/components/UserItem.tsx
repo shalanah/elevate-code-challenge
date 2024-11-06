@@ -48,7 +48,6 @@ export const UserItem = ({
       </div>
       {!loading && (
         <h2 className="text-left leading-[1.15] mt-2 font-bold self-start">
-          {/* I wanted to try 2 lines, could easily be 1 with a join */}
           {name[0]}
           <br />
           {name[1]}
