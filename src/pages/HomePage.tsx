@@ -51,7 +51,8 @@ export const HomePage = () => {
           {error && <Error />}
           {data &&
             data
-              .filter(() => true)
+              // TODO: Filtering + Sorting
+              // .filter(() => true)
               // .sort((a, b) => {(a?.id ?? "") - (b?.id ?? "")})
               .map((user: User | null) => {
                 if (!user) return null;

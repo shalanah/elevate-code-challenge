@@ -31,9 +31,10 @@ export const SkillsThumbnail = ({
       {subjects.map((subject) => (
         <span
           key={subject}
-          className={`h-[100%] flex-1 rounded-t-full`}
+          className={`flex-1 rounded-t-full`}
           style={{
             backgroundColor: `var(--bg-${subject})`,
+            // TODO: Use logical properties
             height:
               (stats.skills[subject].current / stats.skills[subject].max) *
                 100 +
@@ -44,7 +45,7 @@ export const SkillsThumbnail = ({
       {/* <span className="bg-[--bg-memory] h-[80%] flex-1 rounded-t-full" /> */}
       <span className="bg-black h-[100%] w-[1px] rounded-t-full opacity-15" />
       <span
-        className="bg-[--bg-average] h-[80%] flex-1 rounded-t-full"
+        className="bg-[--bg-average] flex-1 rounded-t-full"
         style={{
           height: average * 100 + "%",
         }}

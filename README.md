@@ -17,23 +17,26 @@ I hope you enjoy this project as much as I did creating it!
 
 #### Video + Screenshots
 
-##### Users page - loading
+##### Users - responsive
 
-##### Users page - error
+##### Users - loading
 
-##### Users page - loaded
+##### Users - error
 
-##### User page - loading
+##### Users - loaded
 
-##### User page - error
+##### User details - loading
 
-##### User page - loaded
+##### User details - error
+
+##### User details - loaded
 
 #### Features
 
 - Grab data from an API
   - In a hook using react-query
 - Display users `(/)`
+  - Responsive grid
   - All the info is in one call, might as well show more details before clicking into.
     - Image
     - Name
@@ -59,6 +62,8 @@ I hope you enjoy this project as much as I did creating it!
 - Add filtering + sorting
 - Add grid + list view
 - Add storybook + tests
+- A round of accessibility improvements
+- A round or two of code cleanup
 
 ## Running
 

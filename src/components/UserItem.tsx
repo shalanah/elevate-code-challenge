@@ -1,4 +1,4 @@
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import { User, user_empty } from "../users";
 import { SkillsThumbnail } from "./SkillsThumbnail";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -23,48 +23,43 @@ export const UserItem = ({
   }
 
   return (
-    <SkeletonTheme
-      baseColor="var(--bg-main)"
-      highlightColor="var(--bg-teritiary)"
+    <Link
+      to={`/${user.id}`}
+      style={loading ? { pointerEvents: "none" } : undefined}
+      className={
+        "flex flex-col items-center bg-light-gray outline-transparent-[4px] rounded-xl py-4 px-5 bg-[--bg-secondary] transition-all hover:shadow-md"
+      }
     >
-      <Link
-        to={`/${user.id}`}
-        style={loading ? { pointerEvents: "none" } : undefined}
-        className={
-          "flex flex-col items-center bg-light-gray outline-transparent-[4px] rounded-xl py-4 px-5 bg-[--bg-secondary] transition-all hover:shadow-md"
-        }
-      >
-        <div className="flex justify-between items-center w-full">
-          <UserImage
-            user={user}
-            loading={loading}
-            className="-ml-[8px]"
-            width={65}
-            height={65}
-          />
-          <div className="bg-[--bg-tertiary] py-2 rounded-lg items-center justify-center w-[50%] flex">
-            {loading ? (
-              <div style={{ height: 50 }} />
-            ) : (
-              <SkillsThumbnail width={70} height={50} stats={user.stats} />
-            )}
-          </div>
+      <div className="flex justify-between items-center w-full">
+        <UserImage
+          user={user}
+          loading={loading}
+          className="-ml-[8px]"
+          width={65}
+          height={65}
+        />
+        <div className="bg-[--bg-tertiary] py-2 rounded-lg items-center justify-center w-[50%] flex">
+          {loading ? (
+            <div style={{ height: 50 }} />
+          ) : (
+            <SkillsThumbnail width={70} height={50} stats={user.stats} />
+          )}
         </div>
-        {!loading && (
-          <h2 className="text-left leading-[1.15] mt-2 font-bold self-start">
-            {/* I wanted to try 2 lines, could easily be 1 with a join */}
-            {name[0]}
-            <br />
-            {name[1]}
-          </h2>
-        )}
-        {loading && (
-          <h2 className="text-left leading-[1.15] mt-2 font-bold self-start">
-            <Skeleton width={100} count={2} />
-          </h2>
-        )}
-        <UserStreakSessions user={user} loading={loading} className="mt-5" />
-      </Link>
-    </SkeletonTheme>
+      </div>
+      {!loading && (
+        <h2 className="text-left leading-[1.15] mt-2 font-bold self-start">
+          {/* I wanted to try 2 lines, could easily be 1 with a join */}
+          {name[0]}
+          <br />
+          {name[1]}
+        </h2>
+      )}
+      {loading && (
+        <h2 className="text-left leading-[1.15] mt-2 font-bold self-start">
+          <Skeleton width={100} count={2} />
+        </h2>
+      )}
+      <UserStreakSessions user={user} loading={loading} className="mt-5" />
+    </Link>
   );
 };
