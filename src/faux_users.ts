@@ -23,6 +23,13 @@ export type UserStats = {
   };
 };
 
+export type User = {
+  first_name: string | null;
+  last_name: string | null;
+  image: string | null;
+  stats: UserStats;
+};
+
 export const subjects = ["math", "reading", "speaking", "writing"] as const;
 
 export const users = [
