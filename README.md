@@ -4,8 +4,6 @@ Hi all! 👋
 
 Welcome to my code challenge!
 
-When working on a code challenge, I focus on optimizing fun and learning.
-
 I hope you enjoy this project as much as I did creating it!
 
 ## Description
