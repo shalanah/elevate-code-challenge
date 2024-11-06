@@ -19,8 +19,11 @@ I hope you enjoy this project as much as I did creating it!
 
 ##### Happy Path
 
+https://github.com/user-attachments/assets/59813b11-7b37-4eb5-82ac-f7ae43adc4a6
 
 ##### Users - responsive
+
+https://github.com/user-attachments/assets/f98486a8-37dc-47e0-afde-dd06617d18bd
 
 ##### Users - loading
 <img width="898" alt="users-skeleton" src="https://github.com/user-attachments/assets/2ea5c767-ece8-475f-8924-e680212f602d">
