@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { User } from "../users";
 import { FiUsers } from "react-icons/fi";
 import classNames from "classnames";
@@ -10,7 +9,7 @@ const Inner = ({
   children,
   className,
   ...props
-}: React.HTMLProps<HTMLDivElement> & { children: ReactNode }) => {
+}: React.HTMLProps<HTMLDivElement>) => {
   return (
     <div
       className={classNames(
