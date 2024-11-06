@@ -17,8 +17,8 @@ export const SkillsThumbnail = ({
   const { value, total } = subjects.reduce(
     (acc, subject) => {
       return {
-        value: stats[subject].current + acc.value,
-        total: stats[subject].max + acc.total,
+        value: stats.skills[subject].current + acc.value,
+        total: stats.skills[subject].max + acc.total,
       };
     },
     { value: 0, total: 0 }
@@ -33,9 +33,13 @@ export const SkillsThumbnail = ({
       {subjects.map((subject) => (
         <span
           key={subject}
-          className={`bg-[--bg-${subject}] h-[100%] flex-1 rounded-t-full`}
+          className={`h-[100%] flex-1 rounded-t-full`}
           style={{
-            height: (stats[subject].current / stats[subject].max) * 100 + "%",
+            backgroundColor: `var(--bg-${subject})`,
+            height:
+              (stats.skills[subject].current / stats.skills[subject].max) *
+                100 +
+              "%",
           }}
         />
       ))}

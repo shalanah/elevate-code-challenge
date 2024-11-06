@@ -29,12 +29,17 @@ export const useGetUsers = () => {
             userDataUrl.search = params.toString();
 
             try {
+              // TODO: Add id to result too - for key
               const userDataRes = await fetch(userDataUrl.href);
               const userData = await userDataRes.json();
-              return userData;
+              if (userData.error) {
+                console.error(userData.error);
+                return null;
+              }
+              return { ...userData, id: userId };
             } catch (error) {
               console.error(error);
-              return {}; // missing that data - should we tell the user? retry logic?
+              return null; // missing that data - should we tell the user? retry logic?
             }
           })
         );
@@ -44,7 +49,6 @@ export const useGetUsers = () => {
       }
     },
   });
-  console.log({ res });
 
   return res;
 };

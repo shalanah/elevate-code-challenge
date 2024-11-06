@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { users } from "./faux_users";
+import { User } from "./faux_users";
 import { FiUsers } from "react-icons/fi";
 import classNames from "classnames";
 import { UserItem } from "./UserItem";
@@ -26,11 +26,13 @@ const Inner = ({
 // TODO: We'll need loading skeletons
 function App() {
   const { isPending, error, data } = useGetUsers();
-
   return (
-    <main className="flex flex-col w-full h-full">
-      <div className="w-full flex flex-col mx-auto outline">
-        <header className="bg-[--bg-secondary]">
+    <main
+      className="flex flex-col w-full h-full"
+      style={{ background: "var(--bg-main)" }}
+    >
+      <div className="w-full flex flex-col mx-auto">
+        <header style={{ background: "var(--bg-secondary)" }}>
           <Inner className={`flex gap-2 items-center py-6`}>
             <span className="w-[28px] h-[28px] flex-shrink-0 bg-slate-50 rounded-full flex">
               <FiUsers className="m-auto" />
@@ -46,11 +48,15 @@ function App() {
             gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
           }}
         >
+          {isPending && <div>Loading...</div>}
+          {error && <div>Error: {error.message}</div>}
           {/* TODO: We should have these in alphabetical last name? */}
           {/* TODO: Wouldn't some filtering be nice? */}
-          {[...Array(20)].map((_, i) => {
-            return <UserItem user={users[0]} key={i} />;
-          })}
+          {data &&
+            data.map((user: User | null) => {
+              if (!user) return null;
+              return <UserItem user={user} key={user.id} />;
+            })}
         </Inner>
       </div>
     </main>

@@ -31,3 +31,11 @@ body,
 #root {
   background-color: var(--bg-main);
 }
+
+html,
+body {
+  height: 100dvh;
+}
+#root {
+  min-height: 100%;
+}

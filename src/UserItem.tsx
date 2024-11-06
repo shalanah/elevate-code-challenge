@@ -1,5 +1,6 @@
 import { User } from "./faux_users";
 import { SkillsThumbnail } from "./SkillsThumbnail";
+import { FiUser } from "react-icons/fi";
 
 export const UserItem = ({ user }: { user: User }) => {
   return (
@@ -9,7 +10,17 @@ export const UserItem = ({ user }: { user: User }) => {
     >
       {/* Spans because buttons don't like div descendants which is kinda a shame :) */}
       <span className="flex w-full justify-between items-center">
-        <span className="w-[65px] h-[65px] -ml-[8px] relative flex-shrink-0 bg-red-400 rounded-full border-white border-[5px] shadow-md" />
+        <span className="flex w-[65px] h-[65px] -ml-[8px] relative flex-shrink-0 bg-[--bg-main] rounded-full border-white border-[5px] shadow-md">
+          {user.image ? (
+            <img
+              src={`data:image/png;base64,${user.image}`}
+              alt="profile image"
+              className="w-full h-full rounded-full"
+            />
+          ) : (
+            <FiUser className="m-auto" size={30} />
+          )}
+        </span>
         <span className="bg-[--bg-tertiary] py-2 rounded-lg items-center justify-center w-[50%] flex">
           <SkillsThumbnail width={70} height={50} stats={user.stats} />
         </span>
