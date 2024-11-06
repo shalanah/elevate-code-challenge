@@ -32,22 +32,22 @@ export const user_empty: User = {
       math: {
         current: 0,
         max: 0,
-        level: 0,
+        level: "",
       },
       reading: {
         current: 0,
         max: 0,
-        level: 0,
+        level: "",
       },
       speaking: {
         current: 0,
         max: 0,
-        level: 0,
+        level: "",
       },
       writing: {
         current: 0,
         max: 0,
-        level: 0,
+        level: "",
       },
     },
   },
