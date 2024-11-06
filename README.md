@@ -17,19 +17,29 @@ I hope you enjoy this project as much as I did creating it!
 
 #### Video + Screenshots
 
+##### Happy Path
+
+
 ##### Users - responsive
 
 ##### Users - loading
+<img width="898" alt="users-skeleton" src="https://github.com/user-attachments/assets/2ea5c767-ece8-475f-8924-e680212f602d">
 
 ##### Users - error
+<img width="897" alt="users-error" src="https://github.com/user-attachments/assets/3878b168-1de7-4325-acbc-bdd300b0f905">
 
 ##### Users - loaded
+<img width="896" alt="users-loaded" src="https://github.com/user-attachments/assets/4cfbacbd-8825-4ef4-b8a3-32eda9b51f42">
 
 ##### User details - loading
+<img width="1057" alt="user-loading" src="https://github.com/user-attachments/assets/28c31172-085e-4a6b-9abf-05e50d1536bb">
 
 ##### User details - error
+<img width="838" alt="user-error" src="https://github.com/user-attachments/assets/0e1cdd1b-5d6a-40f1-b98f-88df2accaf4d">
 
 ##### User details - loaded
+<img width="823" alt="user-loaded" src="https://github.com/user-attachments/assets/ddfa5faa-e9f2-4c1d-9530-076455bc9480">
+
 
 #### Features
 
