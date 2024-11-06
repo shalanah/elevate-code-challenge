@@ -3,15 +3,6 @@
 @tailwind utilities;
 
 #root {
-  /* --royal-blue: #024fc0;
-  --deep-sky-blue: #05c3f9;
-  --light-gray: #e5e5e5;
-  --grey-600: #1a1a1a;
-  --grey: #919191;
-  --grad-1: #00e4ff;
-  --grad-2: #0ab4f9;
-  --dark-slate-grey: #005973;
-  --light-blue: #f2fcfe; */
   --red: #cd4570;
   --bg-main: #f0f4f9;
   --bg-secondary: #fff;
