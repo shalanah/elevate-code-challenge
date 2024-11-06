@@ -1,16 +1,25 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { User } from "./faux_users";
+import { User, user_empty } from "./faux_users";
 import { SkillsThumbnail } from "./SkillsThumbnail";
 import { FiUser } from "react-icons/fi";
 import "react-loading-skeleton/dist/skeleton.css";
 
 export const UserItem = ({
-  user,
+  user = user_empty,
   loading = false,
 }: {
-  user: User;
+  user?: User;
   loading?: boolean;
 }) => {
+  const name = [];
+  if (user.first_name) name.push(user.first_name);
+  if (user.last_name) name.push(user.last_name);
+  for (let i = 0; i < 2; i++) {
+    if (name[i] === undefined) {
+      name[i] = <>&nbsp;</>;
+    }
+  }
+
   return (
     <SkeletonTheme
       baseColor="var(--bg-main)"
@@ -40,15 +49,13 @@ export const UserItem = ({
               <SkillsThumbnail width={70} height={50} stats={user.stats} />
             )}
           </span>
-          {/* <span className="w-[50px] h-[50px] flex-shrink-0 bg-[--bg-main]" /> */}
         </span>
         {!loading && (
           <h2 className="text-left leading-[1.15] mt-2 font-bold self-start">
-            {/* If we want to simplify logic - easier with just one line instead of two */}
-            {/* Sometimes first name DNE */}
-            {user.first_name || user.last_name}
+            {/* I wanted to try 2 lines, could easily be 1 with a join */}
+            {name[0]}
             <br />
-            {user.first_name ? user.last_name : ""}
+            {name[1]}
           </h2>
         )}
         {loading && (
@@ -64,7 +71,7 @@ export const UserItem = ({
             </h3>
             <p className="tabular-nums">
               {loading ? (
-                <Skeleton width={40} />
+                <Skeleton width={20} />
               ) : (
                 user.stats.current_streak_in_days
               )}
@@ -74,10 +81,9 @@ export const UserItem = ({
             <h3 className="text-[--text-muted] text-sm">
               {loading ? <Skeleton width={40} /> : "Sessions"}
             </h3>
-            {/* TODO: Make sure we put some commas in here and use equal spacing for numbers */}
             <p className="tabular-nums">
               {loading ? (
-                <Skeleton width={40} />
+                <Skeleton width={20} />
               ) : (
                 user.stats.total_sessions_played
               )}

@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
-import { User, user_empty } from "./faux_users";
+import { User } from "./faux_users";
 import { FiUsers } from "react-icons/fi";
 import classNames from "classnames";
 import { UserItem } from "./UserItem";
 import { useGetUsers } from "./hooks/useGetUsers";
+import { BiSolidErrorCircle } from "react-icons/bi";
 
 const Inner = ({
   children,
@@ -26,8 +27,6 @@ const Inner = ({
 // TODO: We'll need loading skeletons
 function App() {
   const { isPending, error, data } = useGetUsers();
-  // const isPending = true;
-  // const error = undefined;
 
   return (
     <main className="flex flex-col w-full h-full">
@@ -50,10 +49,18 @@ function App() {
           }}
         >
           {isPending &&
-            [...Array(12)].map((_, i) => (
-              <UserItem key={i} loading user={user_empty} />
-            ))}
-          {error && <div>Error: {error?.message}</div>}
+            [...Array(12)].map((_, i) => <UserItem key={i} loading />)}
+          {error && (
+            <div className="border rounded-md p-10 text-center bg-[--bg-secondary] flex flex-col items-center">
+              <BiSolidErrorCircle
+                size={40}
+                style={{ color: "var(--red)" }}
+                className="mb-2"
+              />
+              <h3 className="font-bold">Oooops! Something went wrong</h3>
+              <p>Try refreshing the page or come back later</p>
+            </div>
+          )}
           {data &&
             data.map((user: User | null) => {
               if (!user) return null;

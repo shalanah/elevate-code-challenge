@@ -13,6 +13,7 @@
   --grad-2: #0ab4f9;
   --dark-slate-grey: #005973;
   --light-blue: #f2fcfe; */
+  --red: #cd4570;
   --bg-main: #f0f4f9;
   --bg-secondary: #fff;
   --bg-tertiary: #f0f4f9;
@@ -20,7 +21,7 @@
   --text-muted: #9fafc4;
   --bg-writing: #78cbbc;
   --bg-speaking: #d95d3d;
-  --bg-reading: #cd4570;
+  --bg-reading: var(--red);
   --bg-math: #6960f3;
   --bg-memory: #e6a946;
   --bg-average: #65b8f0;
