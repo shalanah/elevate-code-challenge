@@ -2,6 +2,9 @@ import { ReactNode } from "react";
 import { subjects, users, UserStats } from "./faux_users";
 import { FiUsers } from "react-icons/fi";
 import classNames from "classnames";
+import { useQuery } from "@tanstack/react-query";
+
+console.log(import.meta.env.VITE_API_URL);
 
 const Inner = ({
   children,
@@ -75,6 +78,53 @@ const GraphSmall = ({
 
 // TODO: We'll need loading skeletons
 function App() {
+  // const { isPending, error, data } = useQuery({
+  // TODO: Throw into a custom hook
+  const res = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const usersIdsUrl = new URL(`${import.meta.env.VITE_API_URL}/users`);
+      const params = new URLSearchParams({
+        authentication_user_id: import.meta.env.VITE_USER_ID,
+        authentication_token: import.meta.env.VITE_USER_TOKEN,
+      });
+      usersIdsUrl.search = params.toString();
+
+      try {
+        const res = await fetch(usersIdsUrl.href);
+        const data = await res.json();
+        if (!data.user_ids) {
+          throw new Error("No user_ids found");
+        }
+        return Promise.all(
+          data.user_ids.map(async (userId: number) => {
+            const userDataUrl = new URL(
+              `${import.meta.env.VITE_API_URL}/users/${userId}`
+            );
+            const params = new URLSearchParams({
+              authentication_user_id: import.meta.env.VITE_USER_ID,
+              authentication_token: import.meta.env.VITE_USER_TOKEN,
+            });
+            userDataUrl.search = params.toString();
+
+            try {
+              const userDataRes = await fetch(userDataUrl.href);
+              const userData = await userDataRes.json();
+              return userData;
+            } catch (error) {
+              console.error(error);
+              return {}; // missing that data - should we tell the user? retry logic?
+            }
+          })
+        );
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+  });
+  console.log({ res });
+
   return (
     <main className="flex flex-col w-full h-full">
       <div className="w-full flex flex-col mx-auto outline">
@@ -98,11 +148,12 @@ function App() {
           {/* TODO: Wouldn't some filtering be nice? */}
           {[...Array(20)].map((_, i) => {
             const user = users[0];
+            // TODO: Pull this out into a card component
             return (
               <button
                 key={i}
-                style={{}}
-                className="flex flex-col items-center bg-light-gray rounded-xl py-4 px-5 bg-[--bg-secondary] "
+                style={{ backfaceVisibility: "hidden" }}
+                className="flex flex-col items-center bg-light-gray outline-transparent-[4px] rounded-xl py-4 px-5 bg-[--bg-secondary] hover:drop-shadow-md transition-all hover:outline-[--bg-average]"
               >
                 {/* Spans because buttons don't like div descendants which is kinda a shame :) */}
                 <span className="flex w-full justify-between items-center">
@@ -118,7 +169,7 @@ function App() {
                   {user.last_name}
                 </h2>
                 {/* Should we treat this more like a table? -> is tabular data... look into alternatives */}
-                <span className="flex w-full gap-1 text-left leading-[1.1] mt-3">
+                <span className="flex w-full gap-1 text-left leading-[1.1] mt-5">
                   <span className="flex-1">
                     <h3 className="text-[--text-muted] text-sm">Streak</h3>
                     <p className="tabular-nums">

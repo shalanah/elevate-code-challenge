@@ -27,6 +27,7 @@ TODO: List of features
 - Vite
 - Tailwind CSS (I'm new to Tailwind this year. I selected it to get more practice)
 - React icons
+- React Query (I considered Next.js but wanted to try out React Query again)
 
 ## Running
 
