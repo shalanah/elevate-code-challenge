@@ -47,7 +47,7 @@ const Skill = ({
           className="bg-[--bg-main] h-[100%] w-full absolute"
           style={{
             animationDelay: `${index * 0.05}s`,
-            clipPath: `xywh(0 0 ${percent}% 100%)`,
+            clipPath: `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`,
             backgroundColor: `var(--bg-${subject})`,
           }}
         />
