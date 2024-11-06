@@ -1,5 +1,8 @@
 import { subjects, UserStats } from "./faux_users";
 
+// If performance is an issue - I'd create a canvas element instead
+// - Could simplify and remove graph (I added just for fun!)
+// - Could get more elaborate with a charting library or hand-code some SVG elements
 export const SkillsThumbnail = ({
   width,
   height,
@@ -9,11 +12,6 @@ export const SkillsThumbnail = ({
   height: number;
   stats: UserStats;
 }) => {
-  // If performance is an issue - I'd create a canvas element instead
-  // - Could simplify and remove graph (I added just for fun! - visually)
-  // - Could get more elaborate with a charting library or hand-code some SVG elements
-
-  // TODO: Could pull in some kind of math lib
   const { value, total } = subjects.reduce(
     (acc, subject) => {
       return {
@@ -45,7 +43,6 @@ export const SkillsThumbnail = ({
       ))}
       {/* <span className="bg-[--bg-memory] h-[80%] flex-1 rounded-t-full" /> */}
       <span className="bg-black h-[100%] w-[1px] rounded-t-full opacity-15" />
-      {/* TODO: Add all together */}
       <span
         className="bg-[--bg-average] h-[80%] flex-1 rounded-t-full"
         style={{

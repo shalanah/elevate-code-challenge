@@ -35,6 +35,39 @@ export type User = {
 
 export const subjects = ["math", "reading", "speaking", "writing"] as const;
 
+export const user_empty: User = {
+  id: 0,
+  first_name: null,
+  last_name: null,
+  image: null,
+  stats: {
+    current_streak_in_days: 0,
+    total_sessions_played: 0,
+    skills: {
+      math: {
+        current: 0,
+        max: 0,
+        level: 0,
+      },
+      reading: {
+        current: 0,
+        max: 0,
+        level: 0,
+      },
+      speaking: {
+        current: 0,
+        max: 0,
+        level: 0,
+      },
+      writing: {
+        current: 0,
+        max: 0,
+        level: 0,
+      },
+    },
+  },
+};
+
 export const users = [
   {
     id: 1,
