@@ -4,6 +4,7 @@ export const useGetUsers = () => {
   const res = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
+      // TODO: We could also get the ids and then cache each of the users separately
       const usersIdsUrl = new URL(`${import.meta.env.VITE_API_URL}/users`);
       const params = new URLSearchParams({
         authentication_user_id: import.meta.env.VITE_USER_ID,
@@ -13,6 +14,7 @@ export const useGetUsers = () => {
 
       try {
         const res = await fetch(usersIdsUrl.href);
+        // TODO: Switch to !response.ok
         const data = await res.json();
         if (!data.user_ids) {
           throw new Error("No user_ids found");
@@ -29,9 +31,9 @@ export const useGetUsers = () => {
             userDataUrl.search = params.toString();
 
             try {
-              // TODO: Add id to result too - for key
               const userDataRes = await fetch(userDataUrl.href);
               const userData = await userDataRes.json();
+              // TODO: Switch to !response.ok
               if (userData.error) {
                 console.error(userData.error);
                 return null;
@@ -39,7 +41,7 @@ export const useGetUsers = () => {
               return { ...userData, id: userId };
             } catch (error) {
               console.error(error);
-              return null; // missing that data - should we tell the user? retry logic?
+              return null; // Missing that data - should we tell the user? Retry logic?
             }
           })
         );

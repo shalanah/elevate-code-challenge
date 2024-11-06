@@ -1,4 +1,4 @@
-import { subjects, UserStats } from "./faux_users";
+import { subjects, UserStats } from "../users";
 
 // If performance is an issue - I'd create a canvas element instead
 // - Could simplify and remove graph (I added just for fun!)

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* TODO: Look into how to incorporate colors into tailwind config */
 #root {
   /* --royal-blue: #024fc0;
   --deep-sky-blue: #05c3f9;
@@ -30,13 +29,10 @@
 html,
 body,
 #root {
+  height: 100%;
   background-color: var(--bg-main);
 }
 
-html,
-body {
-  height: 100dvh;
-}
 #root {
   min-height: 100%;
 }
