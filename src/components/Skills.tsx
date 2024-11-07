@@ -15,7 +15,7 @@ const Bar = styled.span`
   animation: ${grow} 0.5s ease-out both;
 `;
 
-// Once again - could use charting lib, canvas, or hand-coded SVG
+// Could use charting lib, canvas, or hand-coded SVG
 const Skill = ({
   name,
   value,
@@ -82,7 +82,6 @@ export const Skills = ({ stats }: { stats: UserStats }) => {
           }
         />
       ))}
-      {/* <span className="bg-[--bg-memory] h-[80%] flex-1 rounded-t-full" /> */}
       <span className="bg-black w-[100%] h-[1px] rounded-r-full opacity-15 mt-2" />
       <Skill
         index={subjects.length}

@@ -42,7 +42,6 @@ export const SkillsThumbnail = ({
           }}
         />
       ))}
-      {/* <span className="bg-[--bg-memory] h-[80%] flex-1 rounded-t-full" /> */}
       <span className="bg-black h-[100%] w-[1px] rounded-t-full opacity-15" />
       <span
         className="bg-[--bg-average] flex-1 rounded-t-full"
