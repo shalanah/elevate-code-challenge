@@ -8,7 +8,8 @@ function App() {
     <Router>
       <SkeletonTheme
         baseColor="var(--bg-main)"
-        highlightColor="var(--bg-tertiary)"
+        highlightColor="var(--bg-main)"
+        enableAnimation={false}
       >
         <Home />
         <Routes>
