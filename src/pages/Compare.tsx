@@ -54,7 +54,7 @@ export const Compare = () => {
     >
       <div className="p-6">
         {isPending && null}
-        {(error || !userA || !userB) && <Error />}
+        {error || ((!userA || !userB) && !isPending && <Error />)}
         {userA && userB && (
           <div className="flex gap-2">
             {[userA as User, userB as User]
