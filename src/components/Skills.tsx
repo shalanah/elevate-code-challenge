@@ -1,5 +1,8 @@
+import classNames from "classnames";
 import { subjects, UserStats } from "../users";
 import styled, { keyframes } from "styled-components";
+
+type Direction = "left" | "right";
 
 // Styled components is an old love of mine - using it just cuz I know it.
 const grow = keyframes`
@@ -23,6 +26,9 @@ const Skill = ({
   subject,
   percent,
   index,
+  showLevel,
+  direction,
+  showSubject,
 }: {
   name: string;
   value: number;
@@ -30,24 +36,34 @@ const Skill = ({
   subject: string;
   percent: number;
   index: number;
+  showLevel: boolean;
+  direction: Direction;
+  showSubject: boolean;
 }) => {
+  const isRight = direction === "right";
   return (
     <div className="flex flex-col gap-[5px] items-start w-full">
-      <p className="text-sm tabular-nums flex items-center justify-between uppercase w-full">
-        <span>
-          <span className="text-[--text-muted] ">{name}:</span>{" "}
+      <p
+        className="text-sm tabular-nums flex items-center justify-between uppercase w-full"
+        style={isRight ? {} : { justifyContent: "flex-end" }}
+      >
+        <span style={isRight ? {} : { marginLeft: "auto" }}>
+          {showSubject && <span className="text-[--text-muted] ">{name}:</span>}{" "}
           <span className="font-bold">{value}</span>
         </span>
-        <span className="text-xs text-[--text-muted]">{level}</span>
+        {showLevel && (
+          <span className="text-xs text-[--text-muted]">{level}</span>
+        )}
       </p>
       <span
         className={`rounded-[4px] h-[10px] w-full bg-[--bg-main] relative overflow-hidden`}
+        style={{ transform: isRight ? "" : `rotate(180deg)` }}
       >
         <Bar
-          className="bg-[--bg-main] h-[100%] w-full absolute"
+          className={classNames("bg-[--bg-main] h-[100%] w-full absolute")}
           style={{
             animationDelay: `${index * 0.05}s`,
-            clipPath: `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`,
+            clipPath: `polygon(0 0, ${percent}% 0%, ${percent}% 100%, 0 100%)`,
             backgroundColor: `var(--bg-${subject})`,
           }}
         />
@@ -56,7 +72,17 @@ const Skill = ({
   );
 };
 
-export const Skills = ({ stats }: { stats: UserStats }) => {
+export const Skills = ({
+  stats,
+  direction = "right",
+  showLevel = true,
+  showSubject = true,
+}: {
+  stats: UserStats;
+  direction?: Direction;
+  showLevel?: boolean;
+  showSubject?: boolean;
+}) => {
   const { value, total } = subjects.reduce(
     (acc, subject) => {
       return {
@@ -71,6 +97,9 @@ export const Skills = ({ stats }: { stats: UserStats }) => {
     <span className="flex flex-col gap-[25px] items-start w-full">
       {subjects.map((subject, i) => (
         <Skill
+          showSubject={showSubject}
+          showLevel={showLevel}
+          direction={direction}
           index={i}
           subject={subject}
           key={subject}
@@ -84,6 +113,9 @@ export const Skills = ({ stats }: { stats: UserStats }) => {
       ))}
       <span className="bg-black w-[100%] h-[1px] rounded-r-full opacity-15 mt-2" />
       <Skill
+        showSubject={showSubject}
+        direction={direction}
+        showLevel={showLevel}
         index={subjects.length}
         name="Average"
         value={value}

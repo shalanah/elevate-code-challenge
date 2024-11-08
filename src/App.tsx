@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { UserDetails } from "./pages/UserDetails";
 import { SkeletonTheme } from "react-loading-skeleton";
+import { Compare } from "./pages/Compare";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={null} />
           <Route path="/:id" element={<UserDetails />} />
+          <Route path="/compare" element={<Compare />} />
         </Routes>
       </SkeletonTheme>
     </Router>
