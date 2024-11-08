@@ -37,11 +37,12 @@ export const Compare = () => {
 
   const userA =
     data && userIdA !== undefined
-      ? data.find((u) => u.id === Number(userIdA))
+      ? // TODO: Fix null user and have id + error to avoid this
+        data.find((u) => u && u?.id === Number(userIdA))
       : undefined;
   const userB =
     data && userIdB !== undefined
-      ? data.find((u) => u.id === Number(userIdB))
+      ? data.find((u) => u && u?.id === Number(userIdB))
       : undefined;
 
   return (
