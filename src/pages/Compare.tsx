@@ -46,8 +46,8 @@ export const Compare = () => {
 
   return (
     <Modal
-      title={"User details"}
-      description="See user stats"
+      title={"Compare users"}
+      description="Compare user skills"
       onClose={() => {
         navigation("/");
       }}
